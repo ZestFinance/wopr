@@ -43,7 +43,7 @@ module Wopr
         end
 
         it 'says gibberish' do
-          last_response.should have_tag('Say').with_attributes(loop: '20')
+          last_response.should have_tag('Say').with_attributes(loop: '0')
         end
       end
 
@@ -95,7 +95,7 @@ module Wopr
         end
 
         it 'says gibberish' do
-          last_response.should have_tag('Say').with_attributes(loop: '20')
+          last_response.should have_tag('Say').with_attributes(loop: '0')
         end
       end
     end

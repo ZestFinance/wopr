@@ -84,8 +84,8 @@ module Wopr
 
     describe '.find_by_number' do
       let(:number) { '1234567890' }
-      let!(:call1) { Call.create('Called' => number) }
-      let!(:call2) { Call.create('Called'=> number) }
+      let!(:call1) { Call.create('From' => number) }
+      let!(:call2) { Call.create('From'=> number) }
       let!(:found_call) { Call.find_by_number number }
 
       it "finds the first call on the number" do
