@@ -1,4 +1,4 @@
-Copyright (c) 2012 Rudy Jahchan's Macbook Air
+Copyright (c) 2012 ZestFinance.
 
 MIT License
 
