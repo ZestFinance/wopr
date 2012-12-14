@@ -6,11 +6,11 @@ require 'wopr/version'
 Gem::Specification.new do |gem|
   gem.name          = "wopr"
   gem.version       = Wopr::VERSION
-  gem.authors       = ["Rudy Jahchan"]
-  gem.email         = ["rudy@carbonfive.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.authors       = ["Rudy Jahchan", "Lei Gao"]
+  gem.email         = ["rudy@carbonfive.com", 'lg@zestfinance.com']
+  gem.description   = %q{WOPR is a toolkit to test your use of Twilio.}
+  gem.summary       = %q{WOPR is a toolkit to test your use of Twilio.}
+  gem.homepage      = "http://ZestFinance.github.com/wopr"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
