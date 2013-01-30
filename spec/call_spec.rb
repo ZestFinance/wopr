@@ -109,9 +109,16 @@ module Wopr
       let(:call) { Call.new('CallSid' => sid) }
       let(:twilio_service) {mock(TwilioService)}
 
+      before { TwilioService.stub(:new).and_return(twilio_service) }
+
       it 'hangs up the call on Twilio' do
-        TwilioService.stub(:new).and_return(twilio_service)
         twilio_service.should_receive(:hangup).with(sid)
+        call.hangup
+      end
+
+      it 'destroys the call' do
+        twilio_service.stub :hangup
+        call.should_receive :destroy
         call.hangup
       end
     end
@@ -183,6 +190,16 @@ module Wopr
 
       it "returns the CallSid parameter the call was created with" do
         call.sid.should == sid
+      end
+    end
+
+    describe '#destroy' do
+      let(:sid) { 'fake' }
+      let(:call) { Call.new('CallSid' => sid) }
+
+      it 'deletes the call' do
+        call.destroy
+        Call.find_by_sid(sid).should be_nil
       end
     end
   end

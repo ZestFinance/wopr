@@ -54,6 +54,11 @@ module Wopr
         end
       end
 
+      def destroy_by_sid(sid)
+        call = Call.find_by_sid sid
+        calls.delete call
+      end
+
       private
 
       def calls
@@ -69,8 +74,13 @@ module Wopr
       @params.merge! params
     end
 
+    def destroy
+      Call.destroy_by_sid sid
+    end
+
     def hangup
       TwilioService.new.hangup sid
+      self.destroy
     end
 
     def number
