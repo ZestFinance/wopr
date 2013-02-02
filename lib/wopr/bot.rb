@@ -23,7 +23,7 @@ module Wopr
       end
     end
 
-    attr_accessor :phone_number, :name
+    attr_accessor :phone_number, :name, :id
 
     def initialize(params)
       @attributes = {}
