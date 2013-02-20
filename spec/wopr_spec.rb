@@ -11,4 +11,23 @@ describe Wopr do
       Wopr.twilio_auth_token = 'bar'
     end
   end
+
+  describe ".boot" do
+    before do
+      Wopr.twilio_account_sid = 'fake_sid'
+      Wopr.twilio_auth_token  = 'auth_token'
+      @twilio_service = Wopr::TwilioService.new
+      Wopr::TwilioService.stub(:new).and_return(@twilio_service)
+    end
+
+    it "updates twilio callbacks" do
+      @twilio_service.should_receive :update_callbacks
+      Wopr.boot
+    end
+
+    it "boots the TwilioCallbackServer" do
+      Wopr::TwilioCallbackServer.should_receive :boot
+      Wopr.boot
+    end
+  end
 end

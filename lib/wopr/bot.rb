@@ -41,9 +41,12 @@ module Wopr
     def on_a_call_with?(another_bot)
       current_call.gather
       sleep 1
-      another_bot.current_call.play '6661'
+
+      digits = four_random_digits
+      another_bot.current_call.play digits
+
       wait_until do
-        current_call.gathered_digits.last == '6661'
+        current_call.gathered_digits.last == digits
       end
     end
 
@@ -84,6 +87,10 @@ module Wopr
       else
         @attributes[sym]
       end
+    end
+
+    def four_random_digits
+      sprintf "%04d", rand(9999)
     end
   end
 end
