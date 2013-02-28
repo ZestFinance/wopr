@@ -18,7 +18,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### For cucumber
+add a file `features/support/wopr.rb` with a following content
+```ruby
+Wopr.configure do |config|
+  config.twilio_server_port   = <port_for_twilio_callbacks>
+  config.twilio_callback_host = <publicly_accesible_host_for_twilio_callbacks>
+  config.twilio_account_sid   = <your_twilio_account_sid>
+  config.twilio_auth_token    = <your_twilio_token>
+end
+
+Wopr.boot
+```
+
+### Now you can do
+```
+bot(:agent1).should be_on_a_call_with(bot(customer))
+bot(:agent1).should be_on_a_call
+```
+
+TODO: bot setup instructions
 
 ## Contributing
 

@@ -13,6 +13,11 @@ module Wopr
       yield self
     end
 
+    def boot
+      TwilioService.new.update_callbacks(Wopr::Bot.all.map(&:phone_number))
+      TwilioCallbackServer.boot
+    end
+
     def twilio_callback_host
       @twilio_callback_host ||= LocalTunnelHost.acquire(twilio_server_port)
     end
