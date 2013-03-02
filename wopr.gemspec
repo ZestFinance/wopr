@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('sinatra')
   gem.add_dependency('twilio-ruby')
-  gem.add_dependency('localtunnel')
   gem.add_dependency('builder')
   gem.add_dependency('rainbow')
 

@@ -80,7 +80,6 @@ module Wopr
 
   autoload :TwilioCallbackServer, 'wopr/twilio_callback_server'
   autoload :Call, 'wopr/call'
-  autoload :LocalTunnelHost, 'wopr/local_tunnel_host'
   autoload :TwilioService, 'wopr/twilio_service'
   autoload :Bot, 'wopr/bot'
   autoload :DSL, 'wopr/dsl'
