@@ -5,9 +5,10 @@ describe Wopr do
     before do
       Wopr.twilio_account_sid = 'fake_sid'
       Wopr.twilio_auth_token  = 'auth_token'
-      @twilio_service = Wopr::TwilioService.new
+      @twilio_service = mock
       Wopr::TwilioService.stub(:new).and_return(@twilio_service)
       @twilio_service.stub :update_callbacks
+      Wopr::TwilioCallbackServer.stub :boot
     end
 
     it "updates twilio callbacks" do
@@ -25,13 +26,14 @@ describe Wopr do
     context "given that configuration file exists" do
       before { File.stub(:exists?).and_return(true) }
 
-      context "and there are twilio credentials" do
+      context "and there is twilio configuration" do
         before do
           @config = {
-            "default_wait_time"   => 50,
-            "twilio_server_port"  => 4501,
-            "twilio_account_sid"  => "abc",
-            "twilio_auth_token"   => "xyz"
+            "default_wait_time"    => 50,
+            "twilio_server_port"   => 4501,
+            "twilio_account_sid"   => "abc",
+            "twilio_auth_token"    => "xyz",
+            "twilio_callback_host" => "http://example.com"
           }
           YAML.stub(:load_file).and_return(@config)
         end
@@ -42,6 +44,11 @@ describe Wopr do
           Wopr.twilio_auth_token.should == "xyz"
         end
 
+        it "sets twilio_callback_root" do
+          Wopr.configure
+          Wopr.twilio_callback_root.should == "http://example.com:4501"
+        end
+
         it "configures the rest" do
           Wopr.configure
           Wopr.default_wait_time.should  == 50
@@ -49,7 +56,7 @@ describe Wopr do
         end
       end
 
-      context "and there is no twilio credentials" do
+      context "and there is no twilio configuration" do
         before do
           @config = { "twilio_account_sid"  => "" }
           YAML.stub(:load_file).and_return(@config)
