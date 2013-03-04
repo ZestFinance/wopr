@@ -1,6 +1,6 @@
 # Wopr
 
-TODO: Write a gem description
+WOPR is a toolkit to test your use of Twilio.
 
 ## Installation
 
@@ -21,13 +21,7 @@ Or install it yourself as:
 ### For cucumber
 add a file `features/support/wopr.rb` with a following content
 ```ruby
-Wopr.configure do |config|
-  config.twilio_server_port   = <port_for_twilio_callbacks>
-  config.twilio_callback_host = <publicly_accesible_host_for_twilio_callbacks>
-  config.twilio_account_sid   = <your_twilio_account_sid>
-  config.twilio_auth_token    = <your_twilio_token>
-end
-
+require 'wopr/cucumber'
 Wopr.boot
 ```
 
