@@ -7,7 +7,7 @@ module Wopr
     end
 
     def make(options)
-      calls.create(options.merge(url: "#{Wopr.twilio_callback_host}/calls"))
+      calls.create(options.merge(url: "#{Wopr.twilio_callback_root}/calls"))
     end
 
     def hangup(sid)
@@ -15,11 +15,11 @@ module Wopr
     end
 
     def play(sid, digits)
-      call(sid).redirect_to "#{Wopr.twilio_callback_host}/calls/#{sid}/play?digits=#{digits}"
+      call(sid).redirect_to "#{Wopr.twilio_callback_root}/calls/#{sid}/play?digits=#{digits}"
     end
 
     def gather(sid)
-      call(sid).redirect_to "#{Wopr.twilio_callback_host}/calls/#{sid}/gather"
+      call(sid).redirect_to "#{Wopr.twilio_callback_root}/calls/#{sid}/gather"
     end
 
     def update_callbacks(numbers)
@@ -27,8 +27,8 @@ module Wopr
         incoming_numbers = @twilio_client.account.incoming_phone_numbers.list(phone_number: number)
         unless incoming_numbers.empty?
           incoming_number = incoming_numbers.first
-          incoming_number.update(voice_url: "#{Wopr.twilio_callback_host}/calls",
-                                 status_callback_url: "#{Wopr.twilio_callback_host}/calls")
+          incoming_number.update(voice_url: "#{Wopr.twilio_callback_root}/calls",
+                                 status_callback_url: "#{Wopr.twilio_callback_root}/calls")
         end
       end
     end
