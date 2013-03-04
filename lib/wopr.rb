@@ -15,7 +15,15 @@ module Wopr
       :twilio_callback_root,
       :default_wait_time
 
-    def configure config_file = 'config/wopr.yml'
+    DEFAULT_CONFIG = 'config/wopr.yml'
+
+    def boot config_file = DEFAULT_CONFIG
+      configure config_file
+      TwilioService.new.update_callbacks(Wopr::Bot.all.map(&:phone_number))
+      TwilioCallbackServer.boot
+    end
+
+    def configure config_file = DEFAULT_CONFIG
       check_config_existence  config_file
 
       config = YAML.load_file config_file
@@ -23,11 +31,6 @@ module Wopr
       check_twilio      config
       create_bots       config
       override_defaults config
-    end
-
-    def boot
-      TwilioService.new.update_callbacks(Wopr::Bot.all.map(&:phone_number))
-      TwilioCallbackServer.boot
     end
 
     def using_wait_time(seconds)

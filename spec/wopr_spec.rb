@@ -3,12 +3,16 @@ require 'spec_helper'
 describe Wopr do
   describe ".boot" do
     before do
-      Wopr.twilio_account_sid = 'fake_sid'
-      Wopr.twilio_auth_token  = 'auth_token'
       @twilio_service = mock
       Wopr::TwilioService.stub(:new).and_return(@twilio_service)
       @twilio_service.stub :update_callbacks
       Wopr::TwilioCallbackServer.stub :boot
+      Wopr.stub :configure
+    end
+
+    it "configures Wopr" do
+      Wopr.should_receive :configure
+      Wopr.boot
     end
 
     it "updates twilio callbacks" do
