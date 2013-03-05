@@ -6,8 +6,8 @@ require 'wopr/version'
 Gem::Specification.new do |gem|
   gem.name          = "wopr"
   gem.version       = Wopr::VERSION
-  gem.authors       = ["Rudy Jahchan", "Lei Gao"]
-  gem.email         = ["rudy@carbonfive.com", 'lg@zestfinance.com']
+  gem.authors       = ["Rudy Jahchan", "Alexander Tamoykin", "Lei Gao"]
+  gem.email         = ["rudy@carbonfive.com", 'at@zestfinance.com']
   gem.description   = %q{WOPR is a toolkit to test your use of Twilio.}
   gem.summary       = %q{WOPR is a toolkit to test your use of Twilio.}
   gem.homepage      = "http://ZestFinance.github.com/wopr"
@@ -19,12 +19,13 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('sinatra')
   gem.add_dependency('twilio-ruby')
-  gem.add_dependency('localtunnel')
   gem.add_dependency('builder')
+  gem.add_dependency('rainbow')
 
   gem.add_development_dependency('rspec')
   gem.add_development_dependency('rake')
   gem.add_development_dependency('rack-test')
   gem.add_development_dependency('thin')
   gem.add_development_dependency('nokogiri')
+  gem.add_development_dependency('debugger')
 end

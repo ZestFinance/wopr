@@ -5,7 +5,7 @@ module Wopr
   describe TwilioCallbackServer do
     describe '.boot' do
       it 'starts the server' do
-        TwilioCallbackServer.boot
+        TwilioCallbackServer.boot 4500
       end
     end
 
@@ -14,7 +14,7 @@ module Wopr
       let(:app) { TwilioCallbackServer }
 
       before do
-        Wopr.twilio_callback_host = 'http://host.com'
+        Wopr.twilio_callback_root = 'http://host.com:4500'
       end
 
       describe 'GET /__identify__' do
@@ -76,7 +76,7 @@ module Wopr
         end
 
         it 'sends the gathered digits to the callback' do
-          last_response.should have_tag('Gather').with_attributes(action: "#{Wopr.twilio_callback_host}/calls/#{sid}/gathered")
+          last_response.should have_tag('Gather').with_attributes(action: "#{Wopr.twilio_callback_root}/calls/#{sid}/gathered")
         end
       end
 

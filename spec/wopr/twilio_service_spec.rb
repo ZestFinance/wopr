@@ -8,7 +8,7 @@ module Wopr
     let(:sid) { 'fake' }
 
     before do
-      Wopr.twilio_callback_host = 'http://host'
+      Wopr.twilio_callback_root = 'http://host'
       Twilio::REST::Client.should_receive(:new).with(
         Wopr.twilio_account_sid, Wopr.twilio_auth_token).
         and_return(twilio_client)
@@ -17,7 +17,7 @@ module Wopr
     end
 
     after do
-      Wopr.twilio_callback_host = nil
+      Wopr.twilio_callback_root = nil
     end
 
     describe '#initalize' do
@@ -38,7 +38,7 @@ module Wopr
 
       it "redirects the twilio call to the play callback" do
         call.should_receive(:redirect_to).
-          with("#{Wopr.twilio_callback_host}/calls/#{sid}/play?digits=#{digits}")
+          with("#{Wopr.twilio_callback_root}/calls/#{sid}/play?digits=#{digits}")
         TwilioService.new.play sid, digits
       end
     end
@@ -46,7 +46,7 @@ module Wopr
     describe '#gather' do
       it "redirects the twilio call to the gather callback" do
         call.should_receive(:redirect_to).
-          with("#{Wopr.twilio_callback_host}/calls/#{sid}/gather")
+          with("#{Wopr.twilio_callback_root}/calls/#{sid}/gather")
         TwilioService.new.gather sid
       end
     end
