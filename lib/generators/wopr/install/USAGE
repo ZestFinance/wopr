@@ -1,0 +1,9 @@
+Description:
+    Install wopr into your rails app
+
+Example:
+    rails generate wopr:install
+
+    This will create:
+        config/wopr.yml
+        features/support/wopr.rb
