@@ -4,13 +4,14 @@ WOPR is a toolkit to test your use of Twilio.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your rails application's Gemfile:
 
     gem 'wopr'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
+    $ bundle exec rails generate wopr:install
 
 Or install it yourself as:
 
@@ -18,20 +19,10 @@ Or install it yourself as:
 
 ## Usage
 
-### For cucumber
-add a file `features/support/wopr.rb` with a following content
-```ruby
-require 'wopr/cucumber'
-Wopr.boot
-```
-
-### Now you can do
 ```
 bot(:agent1).should be_on_a_call_with(bot(customer))
 bot(:agent1).should be_on_a_call
 ```
-
-TODO: bot setup instructions
 
 ## Contributing
 

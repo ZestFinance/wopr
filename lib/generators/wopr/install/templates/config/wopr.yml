@@ -1,0 +1,15 @@
+# from your account page on twilio.com
+twilio_account_sid: ''
+twilio_auth_token: ''
+
+# this is the address that wopr's twilio will call back to.
+twilio_callback_host: ''
+
+# local wopr server will run on this port
+twilio_server_port: 4500
+
+bots:
+  customer:
+    phone_number: ''
+  agent:
+    phone_number: ''
