@@ -1,4 +1,4 @@
-# Wopr
+# Wopr [![Build Status](https://travis-ci.org/ZestFinance/wopr.svg?branch=master)](https://travis-ci.org/ZestFinance/wopr)
 
 WOPR is a toolkit to test your use of Twilio.
 
