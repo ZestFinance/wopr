@@ -1,4 +1,13 @@
 language: ruby
-bundler_args: --without development
+cache: bundler
 rvm:
-  - 1.9.3
+  - 2.1.1
+branches:
+  only:
+    - master
+    - /^release\/.*$/
+    - /^hotfix\/.*$/
+    - /^feature\/.*$/
+    - /^bug\/.*$/
+    - /^chore\/.*$/
+bundler_args: --without development
